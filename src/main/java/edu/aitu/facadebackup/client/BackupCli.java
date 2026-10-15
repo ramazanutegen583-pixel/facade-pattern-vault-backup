@@ -10,8 +10,12 @@ public final class BackupCli {
     private BackupCli() { }
 
     public static void main(String[] args) throws Exception {
+        if (args.length == 0 || (args.length == 1 && "demo".equals(args[0]))) {
+            BackupDemo.run();
+            return;
+        }
         if (args.length < 2 || args.length > 3) {
-            System.err.println("Usage: backup <source-dir> <archive.zip> | verify <archive.zip> | restore <archive.zip> <destination-dir>");
+            printUsage();
             System.exit(2);
         }
         VaultBackupFacade backup = new VaultBackupFacade();
@@ -43,8 +47,13 @@ public final class BackupCli {
     private static void requireArgumentCount(String[] args, int expected) {
         if (args.length != expected) {
             System.err.println("Wrong number of arguments for '" + args[0] + "'.");
-            System.err.println("Usage: backup <source-dir> <archive.zip> | verify <archive.zip> | restore <archive.zip> <destination-dir>");
+            printUsage();
             System.exit(2);
         }
+    }
+
+    private static void printUsage() {
+        System.err.println("Usage: demo | backup <source-dir> <archive.zip> | verify <archive.zip> | restore <archive.zip> <destination-dir>");
+        System.err.println("Run with no arguments to start the live Facade demonstration.");
     }
 }

@@ -19,6 +19,22 @@ mvn clean package
 
 ## Run
 
+### Live demonstration for the defense
+
+In IntelliJ IDEA, open `client/BackupDemo.java` and run **BackupDemo.main()** with the green gutter arrow. No program arguments are needed. You can also run `BackupCli.main()` with no arguments or set its **Program arguments** to `demo`. The working directory should be the project folder containing `pom.xml`.
+
+The repository also includes a shared IntelliJ run configuration named **Facade Demo**.
+
+```shell
+java -jar target/facade-backup-1.0.0.jar demo
+```
+
+The demo creates two sample documents, prints their contents, calls the facade to create a real ZIP, and verifies its checksums. It then simulates an accidental edit to the sample notes and restores the original content from the backup. The demo compares the recovered content with the original text and prints the result. Console progress identifies the facade calls and the subsystem responsibilities as they execute. Results remain under `target/demo-runs/session-*` so you can compare the edited source documents with the ZIP snapshot and the recovered documents. Every run creates a new session directory, so repeated demonstrations do not need manual cleanup.
+
+`BackupDemo` is a demonstration client: its backup, verification, and restore operations call only `VaultBackupFacade`. The optional progress callback prints the facade's actual delegation steps; normal CLI commands keep their existing concise output.
+
+### Individual operations
+
 ```shell
 java -jar target/facade-backup-1.0.0.jar backup ./sample-data ./sample-backup.zip
 java -jar target/facade-backup-1.0.0.jar verify ./sample-backup.zip
@@ -39,7 +55,7 @@ See [the assignment report](reports/facade-pattern-report.docx) for the introduc
 
 ```text
 src/main/java/edu/aitu/facadebackup/
-  client/       BackupCli
+  client/       BackupCli and the live BackupDemo
   domain/       BackupEntry, VerificationReport
   facade/       VaultBackupFacade
   subsystem/    file collection, checksums, manifest, archive assembly and inspection
