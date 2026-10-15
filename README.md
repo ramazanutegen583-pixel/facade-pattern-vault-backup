@@ -19,6 +19,14 @@ mvn clean package
 
 ## Run
 
+### Windows launcher
+
+Extract the ZIP download, then double-click `run-demo.cmd` in the project folder. The launcher locates JDK 17 or later, compiles the Java sources, runs the complete demonstration, and keeps the console open. It does not require Maven or an IntelliJ project import. A JDK is required; the launcher checks `JAVA_HOME`, IntelliJ-managed JDKs under `%USERPROFILE%\.jdks`, `%ProgramFiles%\Java`, and `PATH`.
+
+### Open the project in IntelliJ
+
+Open the folder containing `pom.xml`, `src`, and `run-demo.cmd`. If Windows created an extra outer extraction folder, open the inner project folder. Open `pom.xml` as a Maven project, select JDK 17 or later, and wait for the import to finish before running `BackupDemo.main()`.
+
 ### Live demonstration for the defense
 
 In IntelliJ IDEA, open `client/BackupDemo.java` and run **BackupDemo.main()** with the green gutter arrow. No program arguments are needed. You can also run `BackupCli.main()` with no arguments or set its **Program arguments** to `demo`. The working directory should be the project folder containing `pom.xml`.
