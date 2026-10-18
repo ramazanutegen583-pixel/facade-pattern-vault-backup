@@ -1,0 +1,66 @@
+@startuml
+skinparam classAttributeIconSize 0
+class HomeTheaterDemo <<Client>> {
+  +main(args: String[]): void
+}
+class HomeTheaterFacade {
+  -amplifier: Amplifier
+  -player: StreamingPlayer
+  -projector: Projector
+  -screen: Screen
+  -lights: TheaterLights
+  -popcornMaker: PopcornMaker
+  +watchMovie(title: String): void
+  +pauseMovie(): void
+  +resumeMovie(): void
+  +endMovie(): void
+  +getStatus(): String
+}
+HomeTheaterDemo ..> HomeTheaterFacade : uses
+class Amplifier {
+  - on: boolean
+  - volume: int
+  + turnOn()
+  + setVolume(volume)
+  + enableSurroundSound()
+  + turnOff()
+}
+HomeTheaterFacade --> Amplifier
+class StreamingPlayer {
+  - movie: String
+  - paused: boolean
+  + turnOn()
+  + play(title)
+  + pause()
+  + resume()
+  + stop()
+  + turnOff()
+}
+HomeTheaterFacade --> StreamingPlayer
+class Projector {
+  - on: boolean
+  + turnOn()
+  + enableWideScreen()
+  + turnOff()
+}
+HomeTheaterFacade --> Projector
+class Screen {
+  - lowered: boolean
+  + lower()
+  + raise()
+}
+HomeTheaterFacade --> Screen
+class TheaterLights {
+  - brightness: int
+  + dim(brightness)
+  + turnOn()
+}
+HomeTheaterFacade --> TheaterLights
+class PopcornMaker {
+  - on: boolean
+  + turnOn()
+  + pop()
+  + turnOff()
+}
+HomeTheaterFacade --> PopcornMaker
+@enduml

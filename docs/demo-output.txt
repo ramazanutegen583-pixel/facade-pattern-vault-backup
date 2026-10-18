@@ -1,0 +1,75 @@
+============================================================
+HOME THEATER - FACADE PATTERN DEMONSTRATION
+One facade coordinates six independent theater devices.
+============================================================
+Initial status: Ready
+
+1. CLIENT REQUEST: watchMovie("Interstellar")
+[Facade] Preparing the theater for Interstellar.
+[Popcorn] Maker ON.
+[Popcorn] Fresh popcorn is ready.
+[Lights] Brightness set to 10%.
+[Screen] Lowered for the movie.
+[Projector] Power ON.
+[Projector] Widescreen mode enabled.
+[Amplifier] Power ON.
+[Amplifier] Volume set to 35%.
+[Amplifier] Surround sound enabled.
+[Player] Power ON.
+[Player] Playing: Interstellar.
+[Facade] Theater ready. Enjoy the movie!
+STATUS: Playing: Interstellar
+
+2. CLIENT REQUEST: pauseMovie()
+[Facade] Pausing the movie and lighting the room for a break.
+[Player] Paused: Interstellar.
+[Lights] Brightness set to 50%.
+STATUS: Paused: Interstellar
+
+3. CLIENT REQUEST: resumeMovie()
+[Facade] Restoring movie lighting and resuming playback.
+[Lights] Brightness set to 10%.
+[Player] Resumed: Interstellar.
+STATUS: Playing: Interstellar
+
+4. CLIENT REQUEST: endMovie()
+[Facade] Ending the session and shutting down the theater.
+[Player] Stopped: Interstellar.
+[Player] Power OFF.
+[Amplifier] Power OFF.
+[Projector] Power OFF.
+[Screen] Raised and stored.
+[Lights] Full room lighting restored (100%).
+[Popcorn] Maker OFF.
+[Facade] Session finished. Theater is ready for the next movie.
+STATUS: Ready
+
+5. A SECOND SESSION WITH THE SAME FACADE
+[Facade] Preparing the theater for The Martian.
+[Popcorn] Maker ON.
+[Popcorn] Fresh popcorn is ready.
+[Lights] Brightness set to 10%.
+[Screen] Lowered for the movie.
+[Projector] Power ON.
+[Projector] Widescreen mode enabled.
+[Amplifier] Power ON.
+[Amplifier] Volume set to 35%.
+[Amplifier] Surround sound enabled.
+[Player] Power ON.
+[Player] Playing: The Martian.
+[Facade] Theater ready. Enjoy the movie!
+STATUS: Playing: The Martian
+[Facade] Ending the session and shutting down the theater.
+[Player] Stopped: The Martian.
+[Player] Power OFF.
+[Amplifier] Power OFF.
+[Projector] Power OFF.
+[Screen] Raised and stored.
+[Lights] Full room lighting restored (100%).
+[Popcorn] Maker OFF.
+[Facade] Session finished. Theater is ready for the next movie.
+
+FINAL STATUS: Ready
+Both sessions finished; devices are off, the screen is raised, and lights are at 100%.
+The client requested movie operations; the facade handled all device coordination.
+DEMONSTRATION COMPLETED SUCCESSFULLY
