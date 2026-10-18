@@ -1,72 +1,77 @@
-# Vault Backup Facade
+# Home Theater Facade
 
-An educational Java 17 implementation of the Facade pattern. `VaultBackupFacade` turns a multi-step backup workflow into three client operations: create, verify, and restore.
+Assignment 4 for Software Design Patterns, implemented with Java 17. This project uses the suggested Home Theater topic: one facade coordinates six independent devices to start, pause, resume, and end a movie session.
 
-## Why a facade
+The equipment is simulated through Java object state and English console messages. No media files, external services, or physical devices are required.
 
-A backup client would otherwise need to discover files, calculate SHA-256 checksums, build a versioned manifest, assemble a ZIP archive, open that archive, and compare each stored file with its manifest entry. The facade coordinates these steps and applies the correct order. The subsystem classes remain independent and can still be used by advanced clients.
+## Run in IntelliJ IDEA
 
-## Requirements
+1. Open the project folder containing `pom.xml`, `src`, and `run-demo.cmd`.
+2. If Windows created an extra outer folder when extracting the ZIP, select the inner project folder containing those files.
+3. Open `pom.xml` as a Maven project, select **JDK 17 or later**, and wait for the import.
+4. Open `src/main/java/edu/aitu/hometheater/client/HomeTheaterDemo.java`.
+5. Click the green arrow next to `main()` and select **Run HomeTheaterDemo.main()**.
 
-- JDK 17 or later
-- Maven 3.8 or later
+No program arguments are needed. The shared run configuration **Home Theater Demo** is also included.
 
-## Build
+## Run on Windows without IDE setup
 
-```shell
-mvn clean package
-```
+Double-click `run-demo.cmd`. It finds JDK 17 or later, compiles the production sources, runs the complete demonstration, and keeps the console open. Maven is not required for this launcher.
 
-## Run
+The launcher checks `JAVA_HOME`, IntelliJ-managed JDKs in `%USERPROFILE%\.jdks`, `%ProgramFiles%\Java`, and `PATH`. A JRE without a compiler is insufficient. For an unattended run, use `run-demo.cmd --no-pause`.
 
-### Windows launcher
+## What the program shows
 
-Extract the ZIP download, then double-click `run-demo.cmd` in the project folder. The launcher locates JDK 17 or later, compiles the Java sources, runs the complete demonstration, and keeps the console open. It does not require Maven or an IntelliJ project import. A JDK is required; the launcher checks `JAVA_HOME`, IntelliJ-managed JDKs under `%USERPROFILE%\.jdks`, `%ProgramFiles%\Java`, and `PATH`.
+1. Starting **Interstellar**: popcorn is prepared, lights dim, the screen lowers, the projector and surround sound are configured, and playback begins.
+2. Pausing: playback pauses and the room becomes brighter.
+3. Resuming: movie lighting returns and playback continues.
+4. Ending: playback stops, devices turn off, the screen rises, and full lighting returns.
+5. Starting and ending **The Martian** using the same facade, demonstrating that another session works correctly.
 
-### Open the project in IntelliJ
+Each client request is printed before the individual device actions. The final status is **Ready**. See the actual [console transcript](docs/demo-output.txt).
 
-Open the folder containing `pom.xml`, `src`, and `run-demo.cmd`. If Windows created an extra outer extraction folder, open the inner project folder. Open `pom.xml` as a Maven project, select JDK 17 or later, and wait for the import to finish before running `BackupDemo.main()`.
+## Build and test
 
-### Live demonstration for the defense
-
-In IntelliJ IDEA, open `client/BackupDemo.java` and run **BackupDemo.main()** with the green gutter arrow. No program arguments are needed. You can also run `BackupCli.main()` with no arguments or set its **Program arguments** to `demo`. The working directory should be the project folder containing `pom.xml`.
-
-The repository also includes a shared IntelliJ run configuration named **Facade Demo**.
-
-```shell
-java -jar target/facade-backup-1.0.0.jar demo
-```
-
-The demo creates two sample documents, prints their contents, calls the facade to create a real ZIP, and verifies its checksums. It then simulates an accidental edit to the sample notes and restores the original content from the backup. The demo compares the recovered content with the original text and prints the result. Console progress identifies the facade calls and the subsystem responsibilities as they execute. Results remain under `target/demo-runs/session-*` so you can compare the edited source documents with the ZIP snapshot and the recovered documents. Every run creates a new session directory, so repeated demonstrations do not need manual cleanup.
-
-`BackupDemo` is a demonstration client: its backup, verification, and restore operations call only `VaultBackupFacade`. The optional progress callback prints the facade's actual delegation steps; normal CLI commands keep their existing concise output.
-
-### Individual operations
+Requirements: JDK 17 or later and Maven 3.8 or later. The first Maven test run may download JUnit and Maven plugins. Production code uses only the Java standard library.
 
 ```shell
-java -jar target/facade-backup-1.0.0.jar backup ./sample-data ./sample-backup.zip
-java -jar target/facade-backup-1.0.0.jar verify ./sample-backup.zip
-java -jar target/facade-backup-1.0.0.jar restore ./sample-backup.zip ./restored-data
+mvn clean verify
+java -jar target/home-theater-facade-1.0.0.jar
 ```
 
-Restore requires a new or empty destination directory. Verification reports missing files, size mismatches, and checksum mismatches. The archive contains the original relative paths and a UTF-8 TSV manifest at `META-INF/backup-manifest.tsv`.
+Tests cover complete and repeated sessions, output order, pause/resume lighting, invalid titles and transitions, numeric boundaries, direct component use, and the absence of facade references in subsystem classes. See [validation results](docs/validation.md).
 
-## Design
+## Facade design
+
+`HomeTheaterDemo` creates only `HomeTheaterFacade`. It never constructs or calls a subsystem. The facade exposes four operations plus a high-level status query:
+
+```java
+HomeTheaterFacade theater = new HomeTheaterFacade();
+theater.watchMovie("Interstellar");
+theater.pauseMovie();
+theater.resumeMovie();
+theater.endMovie();
+```
+
+The facade coordinates `Amplifier`, `StreamingPlayer`, `Projector`, `Screen`, `TheaterLights`, and `PopcornMaker`. Each component has its own focused behavior and remains publicly usable without the facade. No component holds a reference to the facade.
 
 ![UML class diagram](docs/class-diagram.png)
 
-The CLI client calls only `VaultBackupFacade`. The facade coordinates `BackupFileCollector`, `ChecksumService`, `ManifestCodec`, `ArchiveAssembler`, and `ArchiveInspector`. The subsystem classes do not refer back to the facade.
-
-See [the assignment report](reports/facade-pattern-report.docx) for the introduction, UML explanation, five Clean Code principles with before-and-after excerpts, and conclusion.
+Invalid operations raise descriptive `IllegalArgumentException` or `IllegalStateException` messages. The facade validates movie titles and session state before changing devices. The demo follows the valid workflow, so it finishes without an error stack trace.
 
 ## Project structure
 
 ```text
-src/main/java/edu/aitu/facadebackup/
-  client/       BackupCli and the live BackupDemo
-  domain/       BackupEntry, VerificationReport
-  facade/       VaultBackupFacade
-  subsystem/    file collection, checksums, manifest, archive assembly and inspection
-docs/           UML class diagram
+src/main/java/edu/aitu/hometheater/
+  client/       HomeTheaterDemo
+  facade/       HomeTheaterFacade
+  subsystem/    six focused device classes
+src/test/java/  JUnit tests
+.run/           shared IntelliJ configuration
+docs/           UML diagram, console transcript, validation results
 reports/        English assignment report
 ```
+
+The [assignment report](reports/home-theater-facade-report.docx) explains the chosen subsystem, UML relationships, five Clean Code principles with code excerpts, validation, and the design conclusion.
+
+Repository: https://github.com/ramazanutegen583-pixel/facade-pattern-vault-backup

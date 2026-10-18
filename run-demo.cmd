@@ -44,9 +44,9 @@ if errorlevel 1 (
     goto finish
 )
 
-echo Starting the live Facade demonstration...
+echo Starting the Home Theater Facade demonstration...
 echo.
-"!JDK_BIN!\java.exe" -cp "target\demo-classes" edu.aitu.facadebackup.client.BackupDemo
+"!JDK_BIN!\java.exe" -cp "target\demo-classes" edu.aitu.hometheater.client.HomeTheaterDemo
 set "RESULT=!ERRORLEVEL!"
 
 :finish
