@@ -1,66 +1,138 @@
 @startuml
 skinparam classAttributeIconSize 0
-class HomeTheaterDemo <<Client>> {
-  +main(args: String[]): void
+hide empty members
+left to right direction
+title Complete Home Theater Class Diagram 20 October 2026
+package "Application classes" {
+class HomeTheaterDemo <<final>> {
+  - HomeTheaterDemo()
+  {static} + main(args: String[]): void
 }
-class HomeTheaterFacade {
-  -amplifier: Amplifier
-  -player: StreamingPlayer
-  -projector: Projector
-  -screen: Screen
-  -lights: TheaterLights
-  -popcornMaker: PopcornMaker
-  +watchMovie(title: String): void
-  +pauseMovie(): void
-  +resumeMovie(): void
-  +endMovie(): void
-  +getStatus(): String
+class HomeTheaterFacade <<final>> {
+  - amplifier: Amplifier {readOnly}
+  - player: StreamingPlayer {readOnly}
+  - projector: Projector {readOnly}
+  - screen: Screen {readOnly}
+  - lights: TheaterLights {readOnly}
+  - popcornMaker: PopcornMaker {readOnly}
+  - currentMovie: String
+  - paused: boolean
+  + watchMovie(title: String): void
+  + pauseMovie(): void
+  + resumeMovie(): void
+  + endMovie(): void
+  + getStatus(): String
+  - requireSession(): void
 }
-HomeTheaterDemo ..> HomeTheaterFacade : uses
-class Amplifier {
+class Amplifier <<final>> {
   - on: boolean
   - volume: int
-  + turnOn()
-  + setVolume(volume)
-  + enableSurroundSound()
-  + turnOff()
+  - surroundSound: boolean
+  + turnOn(): void
+  + setVolume(volume: int): void
+  + enableSurroundSound(): void
+  + turnOff(): void
+  + isOn(): boolean
+  + getVolume(): int
+  + isSurroundSoundEnabled(): boolean
+  - requirePower(): void
 }
-HomeTheaterFacade --> Amplifier
-class StreamingPlayer {
+class PopcornMaker <<final>> {
+  - on: boolean
+  + turnOn(): void
+  + pop(): void
+  + turnOff(): void
+  + isOn(): boolean
+}
+class Projector <<final>> {
+  - on: boolean
+  - wideScreen: boolean
+  + turnOn(): void
+  + enableWideScreen(): void
+  + turnOff(): void
+  + isOn(): boolean
+  + isWideScreen(): boolean
+}
+class Screen <<final>> {
+  - lowered: boolean
+  + lower(): void
+  + raise(): void
+  + isLowered(): boolean
+}
+class StreamingPlayer <<final>> {
+  - on: boolean
   - movie: String
   - paused: boolean
-  + turnOn()
-  + play(title)
-  + pause()
-  + resume()
-  + stop()
-  + turnOff()
+  + turnOn(): void
+  + play(title: String): void
+  + pause(): void
+  + resume(): void
+  + stop(): void
+  + turnOff(): void
+  + isOn(): boolean
+  + isPlaying(): boolean
+  + isPaused(): boolean
+  - requireMovie(): void
 }
-HomeTheaterFacade --> StreamingPlayer
-class Projector {
-  - on: boolean
-  + turnOn()
-  + enableWideScreen()
-  + turnOff()
+class TheaterLights <<final>> {
+  - brightness: int = 100
+  + dim(brightness: int): void
+  + turnOn(): void
+  + getBrightness(): int
 }
-HomeTheaterFacade --> Projector
-class Screen {
-  - lowered: boolean
-  + lower()
-  + raise()
 }
-HomeTheaterFacade --> Screen
-class TheaterLights {
-  - brightness: int
-  + dim(brightness)
-  + turnOn()
+package "Test class" {
+class HomeTheaterTest <<package visibility>> {
+  - output: ByteArrayOutputStream
+  - originalOut: PrintStream
+  ~ captureOutput(): void
+  ~ restoreOutput(): void
+  ~ completeSessionReturnsToReady(): void
+  ~ invalidTitleDoesNotActivateDevices(title: String): void
+  ~ titleIsTrimmed(): void
+  ~ anotherMovieCannotReplaceAnActiveSession(): void
+  ~ idleOperationsAreRejectedWithoutDeviceChanges(operation: String): void
+  ~ duplicatePauseAndPrematureResumePreserveState(): void
+  ~ pausedSessionCanEndAndTheSameFacadeCanStartAnother(): void
+  ~ startupOrderConfiguresEquipmentBeforePlayback(): void
+  ~ shutdownStopsPlaybackBeforeTurningDevicesOff(): void
+  ~ pauseAndResumeCoordinateLightingWithPlayback(): void
+  ~ mainProducesTheCompleteEnglishDemoWithoutArguments(): void
+  ~ amplifierCanBeUsedDirectlyAndResetsOnPowerOff(): void
+  ~ invalidVolumeDoesNotChangeThePreviousSetting(volume: int): void
+  ~ lightsAcceptBoundaryValuesAndRestoreFullLighting(brightness: int): void
+  ~ invalidBrightnessPreservesThePreviousSetting(brightness: int): void
+  ~ projectorEnforcesPowerAndResetsItsDisplayMode(): void
+  ~ screenCanBeControlledDirectly(): void
+  ~ popcornMakerRequiresPower(): void
+  ~ playerSupportsItsOwnLifecycleAndRejectsInvalidTransitions(): void
+  ~ playerRejectsBlankMovieTitles(title: String): void
+  ~ subsystemSourcesDoNotReferenceTheFacade(): void throws Exception
+  ~ clientDoesNotImportOrConstructDevices(): void throws Exception
+  - text(): String
+  - assertOrdered(messages: String...): void
 }
-HomeTheaterFacade --> TheaterLights
-class PopcornMaker {
-  - on: boolean
-  + turnOn()
-  + pop()
-  + turnOff()
 }
-HomeTheaterFacade --> PopcornMaker
+HomeTheaterDemo ..> HomeTheaterFacade : creates and uses
+HomeTheaterFacade "1" --> "1" Amplifier : stores reference
+HomeTheaterFacade "1" --> "1" StreamingPlayer : stores reference
+HomeTheaterFacade "1" --> "1" Projector : stores reference
+HomeTheaterFacade "1" --> "1" Screen : stores reference
+HomeTheaterFacade "1" --> "1" TheaterLights : stores reference
+HomeTheaterFacade "1" --> "1" PopcornMaker : stores reference
+HomeTheaterTest ..> HomeTheaterDemo : tests
+HomeTheaterTest ..> HomeTheaterFacade : tests
+HomeTheaterTest ..> Amplifier : tests
+HomeTheaterTest ..> StreamingPlayer : tests
+HomeTheaterTest ..> Projector : tests
+HomeTheaterTest ..> Screen : tests
+HomeTheaterTest ..> TheaterLights : tests
+HomeTheaterTest ..> PopcornMaker : tests
+legend bottom
++ public    - private    ~ package visibility
+{readOnly} final reference    underlined / {static} static member
+9 authored classes, 21 fields, 66 methods, 1 explicit constructor
+Method parameters appear in signatures. Local variables: report Appendix A.
+Implicit default constructors and external Java/JUnit classes are not source declarations.
+endlegend
 @enduml

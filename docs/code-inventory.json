@@ -1,0 +1,1365 @@
+{
+  "classes": [
+    {
+      "name": "HomeTheaterDemo",
+      "package": "edu.aitu.hometheater.client",
+      "source": "src/main/java/edu/aitu/hometheater/client/HomeTheaterDemo.java",
+      "modifiers": [
+        "public",
+        "final"
+      ],
+      "fields": [],
+      "methods": [
+        {
+          "name": "HomeTheaterDemo",
+          "constructor": true,
+          "returnType": null,
+          "modifiers": [
+            "private"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "main",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public",
+            "static"
+          ],
+          "annotations": [],
+          "parameters": [
+            {
+              "name": "args",
+              "type": "String[]"
+            }
+          ],
+          "throws": [],
+          "locals": [
+            {
+              "name": "theater",
+              "type": "HomeTheaterFacade",
+              "line": 10
+            }
+          ]
+        }
+      ],
+      "sha256": "1785a62150bd5628163dbcae8058998760eb0b9384c8972a9671fee13b7d657c"
+    },
+    {
+      "name": "HomeTheaterFacade",
+      "package": "edu.aitu.hometheater.facade",
+      "source": "src/main/java/edu/aitu/hometheater/facade/HomeTheaterFacade.java",
+      "modifiers": [
+        "public",
+        "final"
+      ],
+      "fields": [
+        {
+          "name": "amplifier",
+          "type": "Amplifier",
+          "modifiers": [
+            "private",
+            "final"
+          ],
+          "initializer": "new Amplifier()"
+        },
+        {
+          "name": "player",
+          "type": "StreamingPlayer",
+          "modifiers": [
+            "private",
+            "final"
+          ],
+          "initializer": "new StreamingPlayer()"
+        },
+        {
+          "name": "projector",
+          "type": "Projector",
+          "modifiers": [
+            "private",
+            "final"
+          ],
+          "initializer": "new Projector()"
+        },
+        {
+          "name": "screen",
+          "type": "Screen",
+          "modifiers": [
+            "private",
+            "final"
+          ],
+          "initializer": "new Screen()"
+        },
+        {
+          "name": "lights",
+          "type": "TheaterLights",
+          "modifiers": [
+            "private",
+            "final"
+          ],
+          "initializer": "new TheaterLights()"
+        },
+        {
+          "name": "popcornMaker",
+          "type": "PopcornMaker",
+          "modifiers": [
+            "private",
+            "final"
+          ],
+          "initializer": "new PopcornMaker()"
+        },
+        {
+          "name": "currentMovie",
+          "type": "String",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        },
+        {
+          "name": "paused",
+          "type": "boolean",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        }
+      ],
+      "methods": [
+        {
+          "name": "watchMovie",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [
+            {
+              "name": "title",
+              "type": "String"
+            }
+          ],
+          "throws": [],
+          "locals": [
+            {
+              "name": "movie",
+              "type": "String",
+              "line": 28
+            }
+          ]
+        },
+        {
+          "name": "pauseMovie",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "resumeMovie",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "endMovie",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "getStatus",
+          "constructor": false,
+          "returnType": "String",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "requireSession",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "private"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        }
+      ],
+      "sha256": "247f91d2b41e790f3e04d015b4c1c308691a1dd9e181f5dd9b4177a8242daaff"
+    },
+    {
+      "name": "Amplifier",
+      "package": "edu.aitu.hometheater.subsystem",
+      "source": "src/main/java/edu/aitu/hometheater/subsystem/Amplifier.java",
+      "modifiers": [
+        "public",
+        "final"
+      ],
+      "fields": [
+        {
+          "name": "on",
+          "type": "boolean",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        },
+        {
+          "name": "volume",
+          "type": "int",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        },
+        {
+          "name": "surroundSound",
+          "type": "boolean",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        }
+      ],
+      "methods": [
+        {
+          "name": "turnOn",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "setVolume",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [
+            {
+              "name": "volume",
+              "type": "int"
+            }
+          ],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "enableSurroundSound",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "turnOff",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "isOn",
+          "constructor": false,
+          "returnType": "boolean",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "getVolume",
+          "constructor": false,
+          "returnType": "int",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "isSurroundSoundEnabled",
+          "constructor": false,
+          "returnType": "boolean",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "requirePower",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "private"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        }
+      ],
+      "sha256": "7edd7a5e85a6ea8aa21b31e5529017f01e5f42e066d5cbdd0ea1bda5e7ce57a5"
+    },
+    {
+      "name": "PopcornMaker",
+      "package": "edu.aitu.hometheater.subsystem",
+      "source": "src/main/java/edu/aitu/hometheater/subsystem/PopcornMaker.java",
+      "modifiers": [
+        "public",
+        "final"
+      ],
+      "fields": [
+        {
+          "name": "on",
+          "type": "boolean",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        }
+      ],
+      "methods": [
+        {
+          "name": "turnOn",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "pop",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "turnOff",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "isOn",
+          "constructor": false,
+          "returnType": "boolean",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        }
+      ],
+      "sha256": "2022134896bf136299e7bda81fcc62c737dfe49f7033e204b02e870b507276d2"
+    },
+    {
+      "name": "Projector",
+      "package": "edu.aitu.hometheater.subsystem",
+      "source": "src/main/java/edu/aitu/hometheater/subsystem/Projector.java",
+      "modifiers": [
+        "public",
+        "final"
+      ],
+      "fields": [
+        {
+          "name": "on",
+          "type": "boolean",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        },
+        {
+          "name": "wideScreen",
+          "type": "boolean",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        }
+      ],
+      "methods": [
+        {
+          "name": "turnOn",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "enableWideScreen",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "turnOff",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "isOn",
+          "constructor": false,
+          "returnType": "boolean",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "isWideScreen",
+          "constructor": false,
+          "returnType": "boolean",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        }
+      ],
+      "sha256": "46f51a19f2f4a8e691e4c56810dfe699e9c0213bf9fb1280b4e3e84c33b1f593"
+    },
+    {
+      "name": "Screen",
+      "package": "edu.aitu.hometheater.subsystem",
+      "source": "src/main/java/edu/aitu/hometheater/subsystem/Screen.java",
+      "modifiers": [
+        "public",
+        "final"
+      ],
+      "fields": [
+        {
+          "name": "lowered",
+          "type": "boolean",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        }
+      ],
+      "methods": [
+        {
+          "name": "lower",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "raise",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "isLowered",
+          "constructor": false,
+          "returnType": "boolean",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        }
+      ],
+      "sha256": "d29cd0b3aa38b6b84a63c294a822b5aa6473bd1e846932450bf4c17a2dee729b"
+    },
+    {
+      "name": "StreamingPlayer",
+      "package": "edu.aitu.hometheater.subsystem",
+      "source": "src/main/java/edu/aitu/hometheater/subsystem/StreamingPlayer.java",
+      "modifiers": [
+        "public",
+        "final"
+      ],
+      "fields": [
+        {
+          "name": "on",
+          "type": "boolean",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        },
+        {
+          "name": "movie",
+          "type": "String",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        },
+        {
+          "name": "paused",
+          "type": "boolean",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        }
+      ],
+      "methods": [
+        {
+          "name": "turnOn",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "play",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [
+            {
+              "name": "title",
+              "type": "String"
+            }
+          ],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "pause",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "resume",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "stop",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "turnOff",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "isOn",
+          "constructor": false,
+          "returnType": "boolean",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "isPlaying",
+          "constructor": false,
+          "returnType": "boolean",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "isPaused",
+          "constructor": false,
+          "returnType": "boolean",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "requireMovie",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "private"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        }
+      ],
+      "sha256": "b7b04494bb90cf609fab1b93e41b2fbccdea28453493b6f11634c1d86ef74093"
+    },
+    {
+      "name": "TheaterLights",
+      "package": "edu.aitu.hometheater.subsystem",
+      "source": "src/main/java/edu/aitu/hometheater/subsystem/TheaterLights.java",
+      "modifiers": [
+        "public",
+        "final"
+      ],
+      "fields": [
+        {
+          "name": "brightness",
+          "type": "int",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": "100"
+        }
+      ],
+      "methods": [
+        {
+          "name": "dim",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [
+            {
+              "name": "brightness",
+              "type": "int"
+            }
+          ],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "turnOn",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "getBrightness",
+          "constructor": false,
+          "returnType": "int",
+          "modifiers": [
+            "public"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        }
+      ],
+      "sha256": "a3ae96572e7a26a7d9ed24f47badd96838e02aa6234f360684ff4b543bffdb2e"
+    },
+    {
+      "name": "HomeTheaterTest",
+      "package": "edu.aitu.hometheater",
+      "source": "src/test/java/edu/aitu/hometheater/HomeTheaterTest.java",
+      "modifiers": [],
+      "fields": [
+        {
+          "name": "output",
+          "type": "ByteArrayOutputStream",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        },
+        {
+          "name": "originalOut",
+          "type": "PrintStream",
+          "modifiers": [
+            "private"
+          ],
+          "initializer": null
+        }
+      ],
+      "methods": [
+        {
+          "name": "captureOutput",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@BeforeEach"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "restoreOutput",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@AfterEach"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "completeSessionReturnsToReady",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": [
+            {
+              "name": "theater",
+              "type": "HomeTheaterFacade",
+              "line": 38
+            }
+          ]
+        },
+        {
+          "name": "invalidTitleDoesNotActivateDevices",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@ParameterizedTest",
+            "@NullSource",
+            "@ValueSource(strings = {\"\", \" \", \"\\t\"})"
+          ],
+          "parameters": [
+            {
+              "name": "title",
+              "type": "String"
+            }
+          ],
+          "throws": [],
+          "locals": [
+            {
+              "name": "theater",
+              "type": "HomeTheaterFacade",
+              "line": 54
+            }
+          ]
+        },
+        {
+          "name": "titleIsTrimmed",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": [
+            {
+              "name": "theater",
+              "type": "HomeTheaterFacade",
+              "line": 62
+            }
+          ]
+        },
+        {
+          "name": "anotherMovieCannotReplaceAnActiveSession",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": [
+            {
+              "name": "theater",
+              "type": "HomeTheaterFacade",
+              "line": 69
+            },
+            {
+              "name": "before",
+              "type": "String",
+              "line": 71
+            }
+          ]
+        },
+        {
+          "name": "idleOperationsAreRejectedWithoutDeviceChanges",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@ParameterizedTest",
+            "@ValueSource(strings = {\"pause\", \"resume\", \"end\"})"
+          ],
+          "parameters": [
+            {
+              "name": "operation",
+              "type": "String"
+            }
+          ],
+          "throws": [],
+          "locals": [
+            {
+              "name": "theater",
+              "type": "HomeTheaterFacade",
+              "line": 80
+            }
+          ]
+        },
+        {
+          "name": "duplicatePauseAndPrematureResumePreserveState",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": [
+            {
+              "name": "theater",
+              "type": "HomeTheaterFacade",
+              "line": 94
+            },
+            {
+              "name": "before",
+              "type": "String",
+              "line": 99
+            }
+          ]
+        },
+        {
+          "name": "pausedSessionCanEndAndTheSameFacadeCanStartAnother",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": [
+            {
+              "name": "theater",
+              "type": "HomeTheaterFacade",
+              "line": 107
+            }
+          ]
+        },
+        {
+          "name": "startupOrderConfiguresEquipmentBeforePlayback",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "shutdownStopsPlaybackBeforeTurningDevicesOff",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": [
+            {
+              "name": "theater",
+              "type": "HomeTheaterFacade",
+              "line": 131
+            }
+          ]
+        },
+        {
+          "name": "pauseAndResumeCoordinateLightingWithPlayback",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": [
+            {
+              "name": "theater",
+              "type": "HomeTheaterFacade",
+              "line": 143
+            }
+          ]
+        },
+        {
+          "name": "mainProducesTheCompleteEnglishDemoWithoutArguments",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "amplifierCanBeUsedDirectlyAndResetsOnPowerOff",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": [
+            {
+              "name": "amplifier",
+              "type": "Amplifier",
+              "line": 165
+            }
+          ]
+        },
+        {
+          "name": "invalidVolumeDoesNotChangeThePreviousSetting",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@ParameterizedTest",
+            "@ValueSource(ints = {-1, 101})"
+          ],
+          "parameters": [
+            {
+              "name": "volume",
+              "type": "int"
+            }
+          ],
+          "throws": [],
+          "locals": [
+            {
+              "name": "amplifier",
+              "type": "Amplifier",
+              "line": 183
+            }
+          ]
+        },
+        {
+          "name": "lightsAcceptBoundaryValuesAndRestoreFullLighting",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@ParameterizedTest",
+            "@ValueSource(ints = {0, 50, 100})"
+          ],
+          "parameters": [
+            {
+              "name": "brightness",
+              "type": "int"
+            }
+          ],
+          "throws": [],
+          "locals": [
+            {
+              "name": "lights",
+              "type": "TheaterLights",
+              "line": 193
+            }
+          ]
+        },
+        {
+          "name": "invalidBrightnessPreservesThePreviousSetting",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@ParameterizedTest",
+            "@ValueSource(ints = {-1, 101})"
+          ],
+          "parameters": [
+            {
+              "name": "brightness",
+              "type": "int"
+            }
+          ],
+          "throws": [],
+          "locals": [
+            {
+              "name": "lights",
+              "type": "TheaterLights",
+              "line": 203
+            }
+          ]
+        },
+        {
+          "name": "projectorEnforcesPowerAndResetsItsDisplayMode",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": [
+            {
+              "name": "projector",
+              "type": "Projector",
+              "line": 210
+            }
+          ]
+        },
+        {
+          "name": "screenCanBeControlledDirectly",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": [
+            {
+              "name": "screen",
+              "type": "Screen",
+              "line": 223
+            }
+          ]
+        },
+        {
+          "name": "popcornMakerRequiresPower",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": [
+            {
+              "name": "maker",
+              "type": "PopcornMaker",
+              "line": 233
+            }
+          ]
+        },
+        {
+          "name": "playerSupportsItsOwnLifecycleAndRejectsInvalidTransitions",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [],
+          "locals": [
+            {
+              "name": "player",
+              "type": "StreamingPlayer",
+              "line": 245
+            }
+          ]
+        },
+        {
+          "name": "playerRejectsBlankMovieTitles",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@ParameterizedTest",
+            "@NullSource",
+            "@ValueSource(strings = {\"\", \" \", \"\\t\"})"
+          ],
+          "parameters": [
+            {
+              "name": "title",
+              "type": "String"
+            }
+          ],
+          "throws": [],
+          "locals": [
+            {
+              "name": "player",
+              "type": "StreamingPlayer",
+              "line": 272
+            }
+          ]
+        },
+        {
+          "name": "subsystemSourcesDoNotReferenceTheFacade",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [
+            "Exception"
+          ],
+          "locals": [
+            {
+              "name": "files",
+              "type": "var",
+              "line": 280
+            },
+            {
+              "name": "source",
+              "type": "Path",
+              "line": 281
+            },
+            {
+              "name": "path",
+              "type": "inferred",
+              "line": 281
+            },
+            {
+              "name": "code",
+              "type": "String",
+              "line": 282
+            }
+          ]
+        },
+        {
+          "name": "clientDoesNotImportOrConstructDevices",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [],
+          "annotations": [
+            "@Test"
+          ],
+          "parameters": [],
+          "throws": [
+            "Exception"
+          ],
+          "locals": [
+            {
+              "name": "client",
+              "type": "String",
+              "line": 291
+            },
+            {
+              "name": "type",
+              "type": "String",
+              "line": 295
+            }
+          ]
+        },
+        {
+          "name": "text",
+          "constructor": false,
+          "returnType": "String",
+          "modifiers": [
+            "private"
+          ],
+          "annotations": [],
+          "parameters": [],
+          "throws": [],
+          "locals": []
+        },
+        {
+          "name": "assertOrdered",
+          "constructor": false,
+          "returnType": "void",
+          "modifiers": [
+            "private"
+          ],
+          "annotations": [],
+          "parameters": [
+            {
+              "name": "messages",
+              "type": "String..."
+            }
+          ],
+          "throws": [],
+          "locals": [
+            {
+              "name": "previous",
+              "type": "int",
+              "line": 303
+            },
+            {
+              "name": "message",
+              "type": "String",
+              "line": 304
+            },
+            {
+              "name": "position",
+              "type": "int",
+              "line": 305
+            }
+          ]
+        }
+      ],
+      "sha256": "b9e1aa7284ea881e82d6f6232fa8aba461f1462db64cdb2241be8dee31a7e171"
+    }
+  ],
+  "revision_date": "2026-10-20",
+  "scope": "All 8 application classes and the single JUnit test class under src. Java and JUnit library classes are external. Only explicitly declared constructors are listed.",
+  "counts": {
+    "application_classes": 8,
+    "test_classes": 1,
+    "fields": 21,
+    "methods": 66,
+    "explicit_constructors": 1,
+    "local_declarations": 31
+  }
+}

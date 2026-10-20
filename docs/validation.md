@@ -48,7 +48,7 @@ The project includes the shared **Home Theater Demo** application configuration.
 
 ## Report and assignment requirements
 
-The four-page English DOCX report was rendered and all pages were visually inspected. The UML diagram includes the client, facade, six independent subsystems, and the direction of their relationships. An editable PlantUML source is also included.
+The original four-page English DOCX report was rendered and all pages were visually inspected on 18 October. It was expanded during the documentation correction recorded below.
 
 | Assignment requirement | Implementation |
 | --- | --- |
@@ -64,3 +64,11 @@ The four-page English DOCX report was rendered and all pages were visually inspe
 | Runnable demonstration | No-argument main, shared IDE configuration, executable JAR, Windows launcher |
 
 Device operations simulate equipment by changing Java object state and printing messages. They do not play video or communicate with physical hardware.
+
+## UML documentation correction on 20 October 2026
+
+All Java declarations under src were parsed with the JDK compiler tree API. The corrected diagram contains **9 authored classes, 21 fields, 66 methods, and 1 explicitly declared constructor**. This comprises 8 application classes with 40 methods, plus the test class with 26 methods. The 34 executed JUnit test cases remain the historical validation result; parameterized test cases and declared method counts are different measurements.
+
+The diagram includes all private helpers and getters, parameter names and types, return types, declared throws clauses, visibility, final references, the static main method, client/test dependencies, and one reference to each device per facade. All 31 local and lambda parameter declarations are documented in the report appendix and source inventory.
+
+The revised six-page English DOCX was rendered and every page was visually inspected. Its embedded UML image was compared with docs/class-diagram.png. Inventory hashes were checked against the Java sources. Application and test Java sources are unchanged from commit 1ea6a10, so no new runtime behavior is introduced by this correction.

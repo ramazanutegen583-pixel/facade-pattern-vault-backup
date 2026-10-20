@@ -57,6 +57,10 @@ The facade coordinates `Amplifier`, `StreamingPlayer`, `Projector`, `Screen`, `T
 
 ![UML class diagram](docs/class-diagram.png)
 
+The complete diagram includes all eight application classes and the JUnit test class, with every declared field, method, and explicit constructor. It shows parameter and return types, visibility, static/final markers, device multiplicities, and client/test dependencies. The report uses an A3 landscape page for this diagram so the complete declarations remain readable.
+
+See the [source declaration register](docs/uml-inventory.md) and [machine-readable inventory](docs/code-inventory.json) for exact counts, field initializers, method annotations, and local variables. Local variables are listed separately because they have method scope and are not UML class attributes. The [20 October UML correction](docs/uml-correction-2026-10-20.md) records this documentation update.
+
 Invalid operations raise descriptive `IllegalArgumentException` or `IllegalStateException` messages. The facade validates movie titles and session state before changing devices. The demo follows the valid workflow, so it finishes without an error stack trace.
 
 ## Project structure
